@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1
 from PIL import Image
 import tensorflow as tf
 import json
@@ -125,6 +126,30 @@ def efficientnet_analyze(img):
 def display_result(results):
     st.write(f"Hasil Prediksi Utama: {results[0]}")
     st.write(f"Hasil Prediksi Lainnya: {results[1]}, {results[2]}, {results[3]}, {results[4]}")
+
+st.set_page_config(
+    page_title="A12 Klasifikasi ML"
+)
+
+st.markdown("""
+    <style>
+    div[class^="_profileContainer"] {
+        display: none !important;
+    }
+    .viewerBadge_container__r5tak,
+    .styles_viewerBadge__CvC9N {
+        display: none !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+streamlit.components.v1.html("""
+    <script>
+        window.top.document.querySelectorAll('[href*="streamlit.io"]').forEach(
+            e => e.setAttribute("style", "display: none !important;")
+        );
+    </script>
+""", height=0)
 
 st.title("Cek Tulisan Tangan")
 
